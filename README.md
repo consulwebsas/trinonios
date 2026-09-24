@@ -1,0 +1,2 @@
+# trinonios
+Trinomio cuadrado perfecto
