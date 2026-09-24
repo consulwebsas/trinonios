@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trinomio de la forma ax² + bx + c</title>
+<style>
+:root{--bg:#f7fbf9;--grid:#dbe8ee;--card:#fff;--ink:#1f3a8a;--txt:#1c2733;--teal:#0e9c8c;--pink:#d6336c;--line:#bcd0da;--soft:#eaf6f3;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10181d;--grid:#1c2a32;--card:#16222a;--ink:#8fb0ff;--txt:#e4ecf1;--teal:#3fd0bd;--pink:#ff7aa8;--line:#2f4552;--soft:#173036}}
+:root[data-theme="dark"]{--bg:#10181d;--grid:#1c2a32;--card:#16222a;--ink:#8fb0ff;--txt:#e4ecf1;--teal:#3fd0bd;--pink:#ff7aa8;--line:#2f4552;--soft:#173036}
+*{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg) linear-gradient(var(--grid) 1px,transparent 1px) 0 0/24px 24px,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/24px 24px;color:var(--txt);font:17px/1.6 "Trebuchet MS",system-ui,sans-serif}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--card);border-bottom:2px solid var(--line)}
+.bar{height:5px;background:var(--line)}.bar i{display:block;height:100%;width:0;background:var(--teal)}
+.hd{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;padding:8px 16px;max-width:900px;margin:auto}
+.logo{font-weight:700;color:var(--teal);text-decoration:none;font-size:1.1rem}
+.crumb{font-size:.85rem;flex:1 1 220px}
+.hd input,.hd button,.solver input,.solver button{font:inherit;border:2px solid var(--line);background:var(--card);color:var(--txt);border-radius:8px;padding:5px 10px}
+.hd input{width:170px}
+button{cursor:pointer}button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+main{max-width:900px;margin:auto;padding:16px}
+h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.1;color:var(--teal);margin:.5em 0 .2em;text-align:center}
+h1 small{display:block;font-size:.6em;color:var(--ink)}
+h2{color:var(--pink);font-size:1.5rem;margin:0 0 .5em}
+h3{color:var(--ink);margin:1em 0 .3em;font-size:1.1rem}
+.card{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:16px 20px;margin:16px 0}
+.card p,.card li{max-width:72ch}
+.m{font-family:Cambria,Georgia,serif;font-style:italic;color:var(--ink);white-space:nowrap}
+.formula{background:var(--soft);border-left:5px solid var(--teal);padding:10px 14px;font-size:1.15rem;overflow-x:auto}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-weight:700}.flow span{background:var(--soft);border:2px solid var(--teal);border-radius:8px;padding:2px 10px}
+dl{margin:0}dt{font-weight:700;color:var(--ink)}dd{margin:0 0 .5em}
+.ex{border-top:2px dashed var(--line);padding-top:8px}.ex h3 span{color:var(--pink)}
+.res{font-weight:700;color:var(--teal)}
+.solver{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:10px;align-items:end}
+.solver label{display:grid;gap:2px}.solver input{width:100%}
+.solver button{background:var(--teal);color:#fff;border-color:var(--teal);font-weight:700}
+#out{margin-top:12px}
+.sig{display:flex;gap:40px;flex-wrap:wrap;margin:40px 0 24px}.sig div{flex:1 1 200px;border-top:2px solid var(--txt);padding-top:4px;text-align:center}
+</style>
+</head>
+<body>
+<header>
+<div class="bar"><i id="pb"></i></div>
+<div class="hd">
+<a class="logo" href="#top">Trinomio · Matemática</a>
+<div class="crumb">Matemática &gt; Álgebra &gt; Factorización &gt; Trinomio de la forma (ax² + bx + c)</div>
+<input id="q" type="search" placeholder="Buscar concepto" aria-label="Buscador de conceptos del tema">
+<button id="th" type="button">Claro / Oscuro</button>
+</div>
+</header>
+<main id="top">
+<h1>Trinomio de la forma <small>(ax² + bx + c)</small></h1>
+
+<section class="card">
+<p>Es una expresión algebraica con términos donde el coeficiente del término cuadrático (a) es diferente de 1 y de 0.</p>
+<ul>
+<li>Consta de tres términos ordenados en forma decreciente: el término cuadrático (<span class="m">ax²</span>), el término lineal (<span class="m">bx</span>) y el término independiente (<span class="m">c</span>).</li>
+<li>El coeficiente <span class="m">a ≠ 1</span> (y <span class="m">a ≠ 0</span>) y generalmente no es un cuadrado perfecto que permita una solución directa como binomio al cuadrado.</li>
+</ul>
+<p class="formula"><b>Fórmula:</b> <span class="m">acx² + (ad + bc)x + bd = (ax + b)(cx + d)</span></p>
+</section>
+
+<section class="card" id="b1">
+<h2>Bloque 1: Header y barra de progreso (navegación)</h2>
+<ul>
+<li><b>Logotipo / Nombre:</b> Trinomio del sitio web. Enlace a la página principal de Matemática.</li>
+<li><b>Ruta de navegación:</b> Matemática &gt; Álgebra &gt; Factorización &gt; Trinomio de la forma (<span class="m">ax² + bx + c</span>).</li>
+<li><b>Indicador del progreso:</b> Barra superior que se llena a medida que el estudiante avanza por las secciones de factorización.</li>
+<li><b>Acceso rápido:</b> Botón para cambiar entre modo claro / oscuro y el buscador de conceptos del tema.</li>
+</ul>
+</section>
+
+<section class="card" id="b2">
+<h2>Bloque 2: Presentación del tema</h2>
+<ul>
+<li><b>Título del tema:</b> Trinomio de la forma <span class="m">ax² + bx + c</span>.</li>
+<li><b>Subtítulo explicativo:</b> Aprende a reconocer, resolver y factorizar los trinomios de la forma (<span class="m">ax² + bx + c</span>) mediante procedimientos sencillos y ordenados.</li>
+<li><b>Métricas rápidas:</b> Tiempo estimado: 15-20 minutos. Nivel de dificultad: Intermedio.</li>
+<li><b>Prerrequisitos recomendados:</b>
+<ol><li>Operaciones con números enteros</li><li>Multiplicación de monomios</li><li>Productos notables</li><li>Factor común</li><li>Propiedad distributiva</li></ol></li>
+<li><b>Botón de acción principal (CTA):</b> “Comenzar lección” o ir a los ejercicios.
+<p><button type="button" onclick="document.getElementById('b3').scrollIntoView()">Comenzar lección</button> <button type="button" onclick="document.getElementById('ej').scrollIntoView()">Ir a los ejercicios</button></p></li>
+</ul>
+</section>
+
+<section class="card" id="b3">
+<h2>Bloque 3: Módulo de fundamentos atómicos y (prerrequisito operativo)</h2>
+<p>Sección para reforzar los conocimientos básicos y necesarios para trabajar con trinomios.</p>
+<p><b>Concepto atómico principal:</b> Un trinomio es una expresión algebraica formada por 3 monomios o 3 términos.</p>
+<ul>
+<li><span class="m">a</span>: coeficiente de x²</li>
+<li><span class="m">b</span>: coeficiente de x</li>
+<li><span class="m">c</span>: coeficiente de término independiente</li>
+</ul>
+<h3>Algoritmo de pasos</h3>
+<ol>
+<li>Identificar los valores de <span class="m">a</span>, <span class="m">b</span> y <span class="m">c</span>.</li>
+<li>Multiplicar <span class="m">a · c</span>.</li>
+<li>Buscar dos números que multiplicados den a·c y sumados den b.</li>
+<li>Descomponer el término central y factorización por agrupación.</li>
+</ol>
+<h3>Ejemplo: <span class="m">2x² + 7x + 3</span></h3>
+<p><span class="m">2(3) = 6</span></p>
+<p>Buscamos dos números que multipliquen 6 y sumen 7:</p>
+<p><span class="m">6 + 1 = 7</span></p>
+<p><span class="m">2x² + 6x + x + 3</span><br><span class="m">2x² + 6x + x + 3</span><br><span class="m">2x(x + 3) + 1(x + 3)</span></p>
+<p class="res">R = (2x + 1)(x + 3)</p>
+</section>
+
+<section class="card" id="b4">
+<h2>Bloque 4: Marco teórico y modelo conceptual</h2>
+<p><b>Definición formal:</b> El trinomio de la forma <span class="m">ax² + bx + c</span> es una expresión algebraica de 3 términos cuyo primer término contiene <span class="m">x²</span>.</p>
+<h3>Representación visual / Geométrica: <span class="m">ax² + bx + c</span></h3>
+<ul>
+<li><span class="m">a</span> = coeficiente cuadrático</li>
+<li><span class="m">b</span> = coeficiente lineal</li>
+<li><span class="m">c</span> = término independiente</li>
+</ul>
+<h3>Regla o algoritmo visual</h3>
+<div class="flow"><span>Identificar</span>→<span>multiplicar a · c</span>→<span>Buscar 2 números</span>→<span>descomponer bx</span>→<span>agrupar</span>→<span>factorizar</span></div>
+<h3>Glosario</h3>
+<dl id="gl">
+<dt>1. Trinomio</dt><dd>Expresión de tres términos.</dd>
+<dt>2. Coeficiente</dt><dd>Número que multiplica una variable.</dd>
+<dt>3. Término independiente</dt><dd>Número que no contiene variable.</dd>
+<dt>4. Factorizar</dt><dd>Transformar una expresión en un producto de factores.</dd>
+<dt>5. Factor común</dt><dd>Elemento que se encuentra en todos los términos.</dd>
+</dl>
+</section>
+
+<section class="card" id="b5">
+<h2>Bloque 5: Demostración e Interacción</h2>
+<ul>
+<li><b>Lienzo de exploración interactiva:</b> Presentar diferentes trinomios y permitir que el estudiante identifique los valores de a, b y c.</li>
+<li><b>Panel de control:</b>
+<ol><li>Campo para ingresar: a</li><li>Campo para ingresar: b</li><li>Campo para ingresar: c</li><li>Botón “Resolver”</li><li>Desglose: Mostrar el procedimiento paso a paso</li></ol></li>
+</ul>
+<div class="solver">
+<label>a<input id="ia" type="number" value="2"></label>
+<label>b<input id="ib" type="number" value="7"></label>
+<label>c<input id="ic" type="number" value="3"></label>
+<button id="go" type="button">Resolver</button>
+</div>
+<div id="out" aria-live="polite"></div>
+</section>
+
+<section class="card" id="ej">
+<h2>Objetivo general</h2>
+<p>Que el estudiante pueda identificar, comprender y factorizar correctamente trinomios de la forma <span class="m">ax² + bx + c</span> siguiendo un procedimiento ordenado y comprobando sus resultados.</p>
+
+<div class="ex"><h3>Ejercicio 1 <span>(Básico)</span></h3>
+<p>Factorizar: <span class="m">3x² + 8x + 4</span></p>
+<ol>
+<li><span class="m">a · c = 3 · 4 = 12</span></li>
+<li>Buscar dos números que multiplicados den 12 y sumados den 8 → 6 y 2.</li>
+<li>Descomponer el término del medio: <span class="m">3x² + 6x + 2x + 4</span></li>
+<li>Agrupar por pares y extraer factor común: <span class="m">3x(x + 2) + 2(x + 2)</span></li>
+<li>Resultado: <span class="res m">(3x + 2)(x + 2)</span></li>
+</ol></div>
+
+<div class="ex"><h3>Ejercicio 2 <span>(Signo negativo al centro)</span></h3>
+<p>Factorizar: <span class="m">5x² − 13x + 6</span></p>
+<ol>
+<li><span class="m">a · c = 5 · 6 = 30</span></li>
+<li>Buscar dos números que multiplicados den 30 y sumados den −13 → −10 y −3.</li>
+<li>Descomponer el término del medio: <span class="m">5x² − 10x − 3x + 6</span></li>
+<li>Agrupar por pares y extraer factor común: <span class="m">5x(x − 2) − 3(x − 2)</span></li>
+<li>Resultado: <span class="res m">(5x − 3)(x − 2)</span></li>
+</ol></div>
+
+<div class="ex"><h3>Ejercicio 3 <span>(Signo negativo final)</span></h3>
+<p>Factorizar: <span class="m">4x² + 5x − 6</span></p>
+<ol>
+<li><span class="m">a · c = 4 · (−6) = −24</span></li>
+<li>Buscar dos números que multiplicados den −24 y sumados den 5 → 8 y −3.</li>
+<li>Descomponer el término del medio: <span class="m">4x² + 8x − 3x − 6</span></li>
+<li>Agrupar por pares y extraer factor común: <span class="m">4x(x + 2) − 3(x + 2)</span></li>
+<li>Resultado: <span class="res m">(4x − 3)(x + 2)</span></li>
+</ol></div>
+
+<div class="ex"><h3>Ejercicio 4 <span>(Ambos signos negativos)</span></h3>
+<p>Factorizar: <span class="m">2x² − x − 15</span></p>
+<ol>
+<li><span class="m">a · c = 2 · (−15) = −30</span></li>
+<li>Buscar dos números que multiplicados den −30 y sumados den −1 → −6 y 5.</li>
+<li>Descomponer el término del medio: <span class="m">2x² − 6x + 5x − 15</span></li>
+<li>Agrupar por partes y extraer factor común: <span class="m">2x(x − 3) + 5(x − 3)</span></li>
+<li>Resultado: <span class="res m">(2x + 5)(x − 3)</span></li>
+</ol></div>
+
+<div class="ex"><h3>Ejercicio 5 <span>(Coeficientes más grandes)</span></h3>
+<p>Factorizar: <span class="m">6x² − 7x − 20</span></p>
+<ol>
+<li><span class="m">a · c = 6 · (−20) = −120</span></li>
+<li>Buscar dos números que multiplicados den −120 y sumados den −7 → −15 y 8.</li>
+<li>Descomponer el término del medio: <span class="m">6x² − 15x + 8x − 20</span></li>
+<li>Agrupar por pares y extraer factor común: <span class="m">3x(2x − 5) + 4(2x − 5)</span></li>
+<li>Resultado: <span class="res m">(3x + 4)(2x − 5)</span></li>
+</ol></div>
+
+<div class="sig"><div>Firma Representante</div><div>Firma Docente</div></div>
+</section>
+</main>
+<script>
+const $=id=>document.getElementById(id),R=document.documentElement;
+$('th').onclick=()=>{const d=(R.dataset.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'))==='dark';R.dataset.theme=d?'light':'dark'};
+addEventListener('scroll',()=>{const h=R.scrollHeight-innerHeight;$('pb').style.width=(h>0?scrollY/h*100:0)+'%'});
+$('q').oninput=e=>{const v=e.target.value.toLowerCase().trim();document.querySelectorAll('.card').forEach(c=>c.hidden=!!v&&!c.textContent.toLowerCase().includes(v))};
+const g=(a,b)=>b?g(b,a%b):Math.abs(a);
+const P=l=>l.filter(([k])=>k).map(([k,v],i)=>{const a=Math.abs(k);return (i?(k<0?' − ':' + '):(k<0?'−':''))+(a===1&&v?'':a)+v}).join('');
+const B=(p,q)=>'('+P([[p,'x'],[q,'']])+')';
+$('go').onclick=()=>{
+const a=+$('ia').value,b=+$('ib').value,c=+$('ic').value,o=$('out');
+if(!a||!c||!Number.isInteger(a)||!Number.isInteger(b)||!Number.isInteger(c)){o.textContent='Ingresa enteros distintos de 0 en a y c.';return}
+const p=a*c;let m0,n0;
+for(let m=-Math.abs(p);m<=Math.abs(p);m++){if(m&&p%m===0&&m+p/m===b){m0=m;n0=p/m;break}}
+const t=P([[a,'x²'],[b,'x'],[c,'']]);
+let h='<p>Factorizar: <span class="m">'+t+'</span> con a = '+a+', b = '+b+', c = '+c+'</p><ol><li><span class="m">a · c = '+a+' · '+(c<0?'('+c+')':c)+' = '+p+'</span></li>';
+if(m0===undefined){o.innerHTML=h+'<li>No existen dos enteros que multiplicados den '+p+' y sumados den '+b+': el trinomio no se factoriza con enteros.</li></ol>';return}
+h+='<li>Dos números que multiplicados den '+p+' y sumados den '+b+' → '+m0+' y '+n0+'.</li>';
+for(const [m,n] of [[m0,n0],[n0,m0]]){
+const g1=g(a,m),u=a/g1,w=m/g1,g2=n/u;
+if(Number.isInteger(g2)&&c/g2===w){
+h+='<li>Descomponer el término del medio: <span class="m">'+P([[a,'x²'],[m,'x'],[n,'x'],[c,'']])+'</span></li>';
+h+='<li>Agrupar por pares y extraer factor común: <span class="m">'+P([[g1,'x']])+B(u,w)+(g2<0?' − ':' + ')+Math.abs(g2)+B(u,w)+'</span></li>';
+h+='<li>Resultado: <span class="res m">'+B(u,w)+B(g1,g2)+'</span></li></ol>';o.innerHTML=h;return}}
+o.innerHTML=h+'<li>No fue posible agrupar con estos valores.</li></ol>'};
+$('go').click();
+</script>
+</body>
+</html>
